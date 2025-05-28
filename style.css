@@ -7,10 +7,12 @@ body {
 
 .wrapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   padding-top: 112px;
   max-width: 1400px;
   margin: 0 auto;
+  padding-right: 220px; /* Это пространство под фиксированное меню */
+  box-sizing: border-box;
 }
 
 .side-menu {
@@ -57,8 +59,9 @@ body {
 }
 
 .content {
-  flex-grow: 1;
-  max-width: 1120px; /* увеличено с 900px */
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
   padding: 40px;
   box-sizing: border-box;
 }
@@ -623,3 +626,4 @@ h1::after {
   padding-left: 0;
   list-style-position: inside;
 }
+
