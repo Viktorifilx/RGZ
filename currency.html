@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Курс доллара — ПАО ИВА</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/currency.js" defer></script>
+</head>
+<body>
+
+  <div class="info-banner">
+    <span>🧠 IVA MCU — российская замена Skype с расширенными возможностями</span>
+  </div>
+
+  <div class="topbar">
+  <div class="topbar-content">
+    <div class="logo-name">
+      <img src="img/logo.png" alt="Логотип IVA">
+      <span>IVA Technologies</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="#">🔍</a>
+      <a href="#">👤</a>
+      <button>Оставить заявку</button>
+    </div>
+  </div>
+</div>
+
+  <div class="wrapper">
+
+    <header class="header-logo">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Логотип ПАО ИВА">
+    </a>
+  </header>
+
+  <!-- Меню справа -->
+  <nav class="side-menu">
+    <ul>
+      <li><a href="index.html">О компании</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a class="active" href="currency.html">Курс валют</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="video.html">Видео</a></li>
+    </ul>
+  </nav>
+
+  <!-- Контент -->
+  <main class="content fade-in">
+    <h1>Курс доллара (USD) по данным ЦБ РФ</h1>
+
+    <div class="converter">
+    <input type="number" id="rubInput" placeholder="Введите сумму">
+    <input type="number" id="usdInput" placeholder="Введите сумму">      
+    </div>
+
+    <div class="rate-card fade-in">
+      💵 <span id="rateInfo">1 USD = ... ₽</span>
+    </div>
+
+    <canvas id="chart" height="100"></canvas>
+    <p id="selectedDate"></p>
+  </main>
+  </div>
+
+  <div class="footer-container">
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>© ПАО ИВА, 2025 — Экосистема корпоративных коммуникаций</p>
+      <p>Свяжитесь с нами: <a href="mailto:info@ivat.ru">info@ivat.ru</a> | Телефон: <a href="tel:+73832345678">+7 (383) 234-56-78</a></p>
+      <p class="footer-note">Сайт создан в рамках учебного проекта. Все данные вымышлены.</p>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
