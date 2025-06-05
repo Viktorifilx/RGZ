@@ -7,7 +7,6 @@ const selectedDate = document.getElementById('selectedDate');
 let currentRate = 0;
 let chart;
 
-// Загружаем текущий курс с сайта ЦБ РФ
 async function fetchCurrentRate() {
   try {
     const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
@@ -28,23 +27,38 @@ async function fetchCurrentRate() {
   }
 }
 
-// Используем фейковые данные для графика за 30 дней
-function fetchHistoricalData() {
+async function fetchHistoricalData() {
   const data = [];
-
   const today = new Date();
+
   for (let i = 29; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    const formatted = date.toISOString().split('T')[0];
-    const rate = 89 + Math.random() * 4; // курс от 89 до 93
-    data.push({ date: formatted, value: rate });
+
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const formatted = `${yyyy}-${mm}-${dd}`;
+    const url = `https://www.cbr-xml-daily.ru/archive/${yyyy}/${mm}/${dd}/daily_json.js`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const json = await res.json();
+      const rate = json.Valute.USD.Value;
+      data.push({ date: formatted, value: rate });
+    } catch (error) {
+      console.warn(`Пропущена дата ${formatted}`, error);
+    }
   }
 
-  drawChart(data);
+  if (data.length > 0) {
+    drawChart(data);
+  } else {
+    selectedDate.textContent = "Нет данных для отображения графика.";
+  }
 }
 
-// Отрисовка графика
 function drawChart(data) {
   const labels = data.map(d => d.date);
   const values = data.map(d => d.value.toFixed(2));
@@ -76,6 +90,5 @@ function drawChart(data) {
   });
 }
 
-// Запуск
 fetchCurrentRate();
 fetchHistoricalData();
